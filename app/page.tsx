@@ -3,10 +3,10 @@
 import { ReactNode } from "react"
 import { motion } from 'framer-motion'
 import Head from 'next/head'
+import Image from 'next/image'
 import { Button } from "@/components/ui/button"
 import SharedLayout from '@/components/shared-layout'
 
-// Moving yellow blobs component
 const MovingYellowBlobs = () => {
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden">
@@ -14,16 +14,16 @@ const MovingYellowBlobs = () => {
         {[...Array(5)].map((_, index) => (
           <motion.div
             key={index}
-            className={`absolute w-[600px] h-[600px] rounded-full ${
+            className={`absolute w-[300px] h-[300px] md:w-[600px] md:h-[600px] rounded-full ${
               index % 2 === 0 ? 'bg-yellow-300/70' : 'bg-yellow-400/50'
-            } blur-[100px]`}
+            } blur-[50px] md:blur-[100px]`}
             initial={{
               top: `${(index * 20) % 100}%`,
               left: `${(index * 40) % 100}%`,
             }}
             animate={{
-              x: [0, 300, -300, 0],
-              y: [0, 300, -300, 0],
+              x: [0, 150, -150, 0],
+              y: [0, 150, -150, 0],
             }}
             transition={{
               duration: 15 + index * 5,
@@ -89,22 +89,31 @@ export default function LandingPage() {
         {/* Moving Blobs Background */}
         <MovingYellowBlobs />
 
-        <div className="container mx-auto px-6 py-12 max-w-5xl">
+        <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-12 max-w-5xl">
           {/* Hero Section */}
-          <section className="text-center space-y-12 mb-24">
-            <motion.h1 
-              className="text-[180px] font-black leading-none tracking-tighter text-white"
-              initial={{ opacity: 0, y: -50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              SLUG
-              <span className="bg-gradient-to-r from-[#FFB800] to-[#FF8A00] text-transparent bg-clip-text">
-                AI
-              </span>
-            </motion.h1>
+          <section className="text-center space-y-8 sm:space-y-12 mb-16 sm:mb-24">
+            <div className="flex flex-col items-center justify-center space-y-6">
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="hidden md:block" // Hide on mobile, show on larger screens
+              >
+              </motion.div>
+              <motion.h1 
+                className="text-6xl sm:text-8xl md:text-[180px] font-black leading-none tracking-tighter text-white"
+                initial={{ opacity: 0, y: -50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              >
+                SLUG
+                <span className="bg-gradient-to-r from-[#FFB800] to-[#FF8A00] text-transparent bg-clip-text">
+                  AI
+                </span>
+              </motion.h1>
+            </div>
             <motion.div 
-              className="flex justify-between max-w-[600px] mx-auto text-xl font-semibold tracking-wide text-white drop-shadow-md"
+              className="flex justify-between max-w-[300px] sm:max-w-[600px] mx-auto text-base sm:text-xl font-semibold tracking-wide text-white drop-shadow-md"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
@@ -117,18 +126,18 @@ export default function LandingPage() {
 
           {/* Say Hello Section */}
           <FadeInWhenVisible>
-            <section className="max-w-2xl mx-auto text-center mb-24 space-y-4">
-              <h2 className="text-3xl font-bold text-white drop-shadow-md">Say Hello</h2>
-              <p className="text-white drop-shadow-md">
+            <section className="max-w-2xl mx-auto text-center mb-16 sm:mb-24 space-y-4">
+              <h2 className="text-2xl sm:text-3xl font-bold text-white drop-shadow-md">Say Hello</h2>
+              <p className="text-sm sm:text-base text-white drop-shadow-md">
                 Slug AI is a Santa Cruz AI mentoring organization that helps transfer knowledge from AI through projects, workshops, and networking events. Join us to learn more about Data, Deep/ML/NLP, and the AI industry.
               </p>
             </section>
           </FadeInWhenVisible>
 
           {/* Who Are We Section */}
-          <section className="max-w-3xl mx-auto mb-24 space-y-8">
+          <section className="max-w-3xl mx-auto mb-16 sm:mb-24 space-y-8">
             <FadeInWhenVisible>
-              <h2 className="text-3xl font-bold text-center text-white drop-shadow-md">Who Are We?</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold text-center text-white drop-shadow-md">Who Are We?</h2>
             </FadeInWhenVisible>
             <div className="space-y-6">
               {sections.map((item, index) => (
@@ -139,7 +148,7 @@ export default function LandingPage() {
                     </span>
                     <div className="flex-1 space-y-1">
                       <h3 className="font-semibold text-white drop-shadow-md">{item.title}</h3>
-                      <p className="text-white drop-shadow-md">{item.description}</p>
+                      <p className="text-sm sm:text-base text-white drop-shadow-md">{item.description}</p>
                     </div>
                   </div>
                 </FadeInWhenVisible>
@@ -149,15 +158,15 @@ export default function LandingPage() {
 
           {/* Join Us Section */}
           <FadeInWhenVisible>
-            <section className="max-w-lg mx-auto text-center py-16 px-8 bg-gray-900 bg-opacity-60 rounded-3xl shadow-lg mt-16 backdrop-blur-md border border-gray-700">
-              <h2 className="text-4xl font-extrabold mb-6 text-white tracking-tight">
+            <section className="max-w-lg mx-auto text-center py-12 px-6 sm:py-16 sm:px-8 bg-gray-900 bg-opacity-60 rounded-3xl shadow-lg mt-16 backdrop-blur-md border border-gray-700">
+              <h2 className="text-3xl sm:text-4xl font-extrabold mb-6 text-white tracking-tight">
                 Join the AI Revolution
               </h2>
-              <p className="text-lg text-gray-300 mb-8 leading-relaxed max-w-md mx-auto">
+              <p className="text-base sm:text-lg text-gray-300 mb-8 leading-relaxed max-w-md mx-auto">
                 Ready to be part of the AI revolution? Apply now to join SLUG AI and start your journey in the world of artificial intelligence!
               </p>
               <Button
-                className="w-full max-w-xs mx-auto bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-white font-semibold text-lg py-3 px-6 rounded-full hover:shadow-lg transition-transform transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-yellow-400 focus:ring-opacity-50"
+                className="w-full max-w-xs mx-auto bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-white font-semibold text-base sm:text-lg py-2 sm:py-3 px-4 sm:px-6 rounded-full hover:shadow-lg transition-transform transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-yellow-400 focus:ring-opacity-50"
                 onClick={() => window.location.href = '/join'}
               >
                 Apply Now
