@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Head from 'next/head'
 import Image from 'next/image'
 import { Mail, Linkedin } from 'lucide-react'
 import { Button } from "@/components/ui/button"
@@ -16,6 +17,7 @@ interface MemberProps {
   description?: string
 }
 
+// Moving yellow blobs component
 const MovingYellowBlobs = () => {
   return (
     <div className="absolute inset-0 -z-10 overflow-hidden">
@@ -33,26 +35,6 @@ const MovingYellowBlobs = () => {
         className="absolute top-1/3 right-1/3 w-[250px] h-[250px] rounded-full bg-yellow-300/30 blur-[40px]"
         animate={{ x: [0, -100, 100, 0], y: [0, 100, -100, 0] }}
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute bottom-1/4 left-1/3 w-[200px] h-[200px] rounded-full bg-yellow-300/20 blur-[30px]"
-        animate={{ x: [0, 90, -90, 0], y: [0, -90, 90, 0] }}
-        transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute top-1/2 left-1/2 w-[150px] h-[150px] rounded-full bg-yellow-300/25 blur-[20px]"
-        animate={{ x: [0, -70, 70, 0], y: [0, 70, -70, 0] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute top-1/4 right-1/5 w-[100px] h-[100px] rounded-full bg-yellow-300/30 blur-[20px]"
-        animate={{ x: [0, 80, -80, 0], y: [0, -80, 80, 0] }}
-        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute bottom-1/3 left-1/4 w-[120px] h-[120px] rounded-full bg-yellow-300/25 blur-[25px]"
-        animate={{ x: [0, -100, 100, 0], y: [0, 100, -100, 0] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
       />
     </div>
   )
@@ -123,7 +105,7 @@ export default function AboutPage() {
       image: "/neel_billimoria.jpg",
       email: "nbillimo@ucsc.edu",
       linkedInUrl: "https://www.linkedin.com/in/neel-billimoria/",
-      description: "Expert in AI and data science, leveraging UCSC&apos;s research opportunities to advance AI consulting services."
+      description: "Expert in AI and data science, leveraging UCSC's research opportunities to advance AI consulting services."
     }
   ]
 
@@ -138,59 +120,64 @@ export default function AboutPage() {
   ]
 
   return (
-    <SharedLayout>
-      <div className="relative">
-        <MovingYellowBlobs />
-        <div className="container mx-auto px-6 py-12 max-w-5xl">
-          <section className="flex flex-col lg:flex-row items-center mb-16 gap-8 bg-white/10 p-8 rounded-xl backdrop-blur-sm shadow-lg">
-            <div className="lg:w-1/2">
-              <Image src="/crowd.png" alt="Team Photo" width={500} height={500} className="rounded-xl object-cover" />
-            </div>
-            <div className="lg:w-1/2 text-white text-left">
-              <h1 className="text-4xl font-bold mb-4">Meet the Team</h1>
-              <p className="text-lg leading-relaxed">
-                Born in the innovative spirit of UC Santa Cruz, Slug AI represents the next generation of AI consultants. Our passionate team is pushing boundaries in AI consulting, inspired by UCSC&apos;s unique blend of scientific rigor and creativity.
-              </p>
-            </div>
-          </section>
+    <>
+      <Head>
+        <title>About SLUG AI</title>
+      </Head>
+      <SharedLayout>
+        <div className="relative">
+          <MovingYellowBlobs />
+          <div className="container mx-auto px-6 py-12 max-w-5xl">
+            <section className="flex flex-col lg:flex-row items-center mb-16 gap-8 bg-white/10 p-8 rounded-xl backdrop-blur-sm shadow-lg">
+              <div className="lg:w-1/2">
+                <Image src="/crowd.png" alt="Team Photo" width={500} height={500} className="rounded-xl object-cover" />
+              </div>
+              <div className="lg:w-1/2 text-white text-left">
+                <h1 className="text-4xl font-bold mb-4">Meet the Team</h1>
+                <p className="text-lg leading-relaxed">
+                  Born in the innovative spirit of UC Santa Cruz, Slug AI represents the next generation of AI consultants. Our passionate team is pushing boundaries in AI consulting, inspired by UCSC's unique blend of scientific rigor and creativity.
+                </p>
+              </div>
+            </section>
 
-          <section className="mb-24">
-            <h2 className="text-3xl font-bold mb-12 text-white text-center">Our Founders</h2>
-            <div className="grid md:grid-cols-2 gap-12">
-              {founders.map((founder, index) => (
-                <FounderProfile key={index} {...founder} />
-              ))}
-            </div>
-          </section>
+            <section className="mb-24">
+              <h2 className="text-3xl font-bold mb-12 text-white text-center">Our Founders</h2>
+              <div className="grid md:grid-cols-2 gap-12">
+                {founders.map((founder, index) => (
+                  <FounderProfile key={index} {...founder} />
+                ))}
+              </div>
+            </section>
 
-          <section className="mb-24">
-            <h2 className="text-3xl font-bold mb-12 text-white text-center">The Team</h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-10">
-              {team.map((member, index) => (
-                <TeamMember key={index} {...member} />
-              ))}
-            </div>
-          </section>
+            <section className="mb-24">
+              <h2 className="text-3xl font-bold mb-12 text-white text-center">The Team</h2>
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-10">
+                {team.map((member, index) => (
+                  <TeamMember key={index} {...member} />
+                ))}
+              </div>
+            </section>
 
-          <motion.section
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="max-w-2xl mx-auto text-center bg-white/10 backdrop-blur-sm rounded-xl p-10 shadow-lg"
-          >
-            <h2 className="text-3xl font-bold text-white mb-4">Join Us</h2>
-            <p className="text-lg text-white mb-6">
-              Ready to be part of something extraordinary? Join us as we push the boundaries of AI innovation.
-            </p>
-            <Button 
-              className="bg-gradient-to-r from-[#FFB800] to-[#FF8A00] text-white px-6 py-3 rounded-full shadow-md transform hover:scale-105 transition-transform"
-              onClick={() => window.location.href = '/join'}
+            <motion.section
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="max-w-2xl mx-auto text-center bg-white/10 backdrop-blur-sm rounded-xl p-10 shadow-lg"
             >
-              Apply Now
-            </Button>
-          </motion.section>
+              <h2 className="text-3xl font-bold text-white mb-4">Join Us</h2>
+              <p className="text-lg text-white mb-6">
+                Ready to be part of something extraordinary? Join us as we push the boundaries of AI innovation.
+              </p>
+              <Button 
+                className="bg-gradient-to-r from-[#FFB800] to-[#FF8A00] text-white px-6 py-3 rounded-full shadow-md transform hover:scale-105 transition-transform"
+                onClick={() => window.location.href = '/join'}
+              >
+                Apply Now
+              </Button>
+            </motion.section>
+          </div>
         </div>
-      </div>
-    </SharedLayout>
+      </SharedLayout>
+    </>
   )
 }

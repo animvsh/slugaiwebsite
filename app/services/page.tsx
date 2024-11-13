@@ -3,6 +3,7 @@
 import { ReactNode } from "react"
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import Head from 'next/head'
 import { Button } from "@/components/ui/button"
 import { Brain, Code, Database, MessageSquare, Sparkles, Zap, CheckCircle } from 'lucide-react'
 import SharedLayout from '@/components/shared-layout'
@@ -22,6 +23,35 @@ const FadeInWhenVisible: React.FC<FadeInWhenVisibleProps> = ({ children, delay =
     >
       {children}
     </motion.div>
+  )
+}
+
+// Updated MovingYellowBlobs Component without scroll-based movement
+const MovingYellowBlobs = () => {
+  return (
+    <div className="fixed inset-0 -z-10 pointer-events-none">
+      {[...Array(8)].map((_, index) => (
+        <motion.div
+          key={index}
+          className={`absolute rounded-full bg-yellow-${300 + (index % 2) * 100}/50 blur-2xl`}
+          style={{
+            width: `${200 + index * 20}px`,
+            height: `${200 + index * 20}px`,
+            top: `${Math.random() * 100}%`,
+            left: `${Math.random() * 100}%`,
+          }}
+          animate={{
+            x: [0, Math.random() * 100 - 50, Math.random() * -100 + 50, 0],
+            y: [0, Math.random() * 100 - 50, Math.random() * -100 + 50, 0],
+          }}
+          transition={{
+            duration: 10 + index * 3,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+      ))}
+    </div>
   )
 }
 
@@ -88,23 +118,13 @@ export default function ServicesPage() {
 
   return (
     <SharedLayout>
-      <style jsx global>{`
-        @keyframes blobMovement {
-          0% { transform: translate(0px, 0px) scale(1); }
-          20% { transform: translate(100px, -30px) scale(1.1); }
-          40% { transform: translate(-80px, 60px) scale(1); }
-          60% { transform: translate(50px, -100px) scale(1.2); }
-          80% { transform: translate(-90px, 40px) scale(0.9); }
-          100% { transform: translate(0px, 0px) scale(1); }
-        }
-      `}</style>
+      <Head>
+        <title>Slug AI</title>
+      </Head>
 
       <div className="relative">
         {/* Background Blobs */}
-        <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
-          {/* Animated blobs */}
-          {/* Blob elements with updated keyframes */}
-        </div>
+        <MovingYellowBlobs />
 
         <div className="container mx-auto px-6 py-12 max-w-5xl text-white relative">
           {/* Hero Section */}
@@ -135,9 +155,73 @@ export default function ServicesPage() {
             <FadeInWhenVisible>
               <h2 className="text-3xl font-bold text-center mb-16 text-white">Services</h2>
             </FadeInWhenVisible>
-
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-              {/* Services components */}
+              <FadeInWhenVisible delay={0.1}>
+                <div className="p-8 bg-black/70 rounded-2xl shadow-lg backdrop-blur-md transition-shadow h-full">
+                  <h3 className="text-xl font-semibold mb-6 text-white">Consulting Services</h3>
+                  <ul className="space-y-4 text-gray-300 text-sm">
+                    <li className="flex items-center gap-2">
+                      <MessageSquare className="w-4 h-4 text-white" />
+                      <span>Business Consulting</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Zap className="w-4 h-4 text-white" />
+                      <span>Online Research</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Sparkles className="w-4 h-4 text-white" />
+                      <span>Competitive Analysis</span>
+                    </li>
+                  </ul>
+                </div>
+              </FadeInWhenVisible>
+
+              <FadeInWhenVisible delay={0.2}>
+                <div className="p-8 bg-black/70 rounded-2xl shadow-lg backdrop-blur-md transition-shadow h-full">
+                  <h3 className="text-xl font-semibold mb-6 text-white">Software Development</h3>
+                  <ul className="space-y-4 text-gray-300 text-sm">
+                    <li className="flex items-center gap-2">
+                      <Code className="w-4 h-4 text-white" />
+                      <span>Full-Stack Engineering</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Brain className="w-4 h-4 text-white" />
+                      <span>AI/ML Development</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Database className="w-4 h-4 text-white" />
+                      <span>Data Infrastructure</span>
+                    </li>
+                  </ul>
+                </div>
+              </FadeInWhenVisible>
+
+              <FadeInWhenVisible delay={0.3}>
+                <div className="p-8 bg-black/70 rounded-2xl shadow-lg backdrop-blur-md transition-shadow h-full">
+                  <h3 className="text-xl font-semibold mb-6 text-white">Generative AI Services</h3>
+                  <ul className="space-y-4 text-gray-300 text-sm">
+                    <li>• Large Language Models</li>
+                    <li>• Image & LLM</li>
+                    <li>• Generation (Text)</li>
+                    <li>• Generation (Code)</li>
+                    <li>• Diffusion Models</li>
+                    <li>• Fine-tuning</li>
+                    <li>• Deployment</li>
+                  </ul>
+                </div>
+              </FadeInWhenVisible>
+
+              <FadeInWhenVisible delay={0.4}>
+                <div className="p-8 bg-black/70 rounded-2xl shadow-lg backdrop-blur-md transition-shadow h-full">
+                  <h3 className="text-xl font-semibold mb-6 text-white">Predictive AI Services</h3>
+                  <ul className="space-y-4 text-gray-300 text-sm">
+                    <li>• Classical Machine Learning</li>
+                    <li>• Deep Learning</li>
+                    <li>• Computer Vision (CNNs)</li>
+                    <li>• Graph Neural Networks</li>
+                  </ul>
+                </div>
+              </FadeInWhenVisible>
             </div>
           </section>
 
@@ -174,47 +258,6 @@ export default function ServicesPage() {
               </div>
             </FadeInWhenVisible>
           </section>
-
-          {/* Partnership Section */}
-          <section className="mb-24">
-            <div className="relative rounded-2xl overflow-hidden shadow-lg">
-              <Image
-                src="/crowd.png"
-                alt="Partnership Background"
-                layout="fill"
-                objectFit="cover"
-                className="w-full h-[400px] object-cover opacity-70"
-              />
-              <div className="absolute inset-0 bg-black/70 p-12 flex flex-col justify-end backdrop-blur-md">
-                <FadeInWhenVisible>
-                  <h2 className="text-3xl font-bold text-white mb-4">
-                    We don&apos;t just deliver solutions—we build partnerships.
-                  </h2>
-                  <p className="text-gray-300 max-w-2xl">
-                    At SLUG AI, we believe effective tech starts with effective relationships.
-                  </p>
-                </FadeInWhenVisible>
-              </div>
-            </div>
-          </section>
-
-          {/* Join Us Section */}
-          <FadeInWhenVisible>
-            <section className="max-w-lg mx-auto text-center py-16 px-6 bg-gray-800 bg-opacity-70 rounded-2xl shadow-xl mt-16 backdrop-blur-sm">
-              <h2 className="text-4xl font-extrabold mb-6 text-white tracking-tight">
-                Join the AI Revolution
-              </h2>
-              <p className="text-lg text-gray-300 mb-8 leading-relaxed max-w-md mx-auto">
-                Ready to make a difference with AI? Apply now to join SLUG AI and embark on an exciting journey.
-              </p>
-              <Button
-                className="w-full max-w-xs mx-auto bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-white font-semibold text-lg py-3 px-6 rounded-full hover:shadow-2xl transition-transform transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-yellow-400 focus:ring-opacity-50"
-                onClick={() => window.location.href = '/join'}
-              >
-                Apply Now
-              </Button>
-            </section>
-          </FadeInWhenVisible>
         </div>
       </div>
     </SharedLayout>

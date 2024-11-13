@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Head from 'next/head'
 import { Button } from "@/components/ui/button"
 import SharedLayout from '@/components/shared-layout'
 
@@ -62,6 +63,9 @@ const MovingYellowBlobs = () => (
 export default function JoinPage() {
   return (
     <>
+      <Head>
+        <title>Slug AI</title>
+      </Head>
       <MovingYellowBlobs />
       <SharedLayout>
         <div className="relative min-h-screen flex items-center justify-center">

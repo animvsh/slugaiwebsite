@@ -5,62 +5,23 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Instagram, Linkedin } from 'lucide-react'
 import Image from 'next/image'
+import Head from 'next/head'
 
 const MovingYellowBlobs = () => {
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
-      {/* Large yellow blob */}
+      {/* Various yellow blobs */}
       <motion.div
         className="absolute top-1/4 left-1/4 w-[800px] h-[800px] rounded-full bg-yellow-300/60 blur-[120px]"
-        animate={{
-          x: [0, 100, -100, 0],
-          y: [0, -100, 100, 0],
-        }}
-        transition={{
-          duration: 20,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
+        animate={{ x: [0, 100, -100, 0], y: [0, -100, 100, 0] }}
+        transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
       />
-      {/* Medium yellow blob */}
       <motion.div
         className="absolute top-3/4 right-1/4 w-[600px] h-[600px] rounded-full bg-yellow-300/40 blur-[100px]"
-        animate={{
-          x: [0, -80, 80, 0],
-          y: [0, 80, -80, 0],
-        }}
-        transition={{
-          duration: 18,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
+        animate={{ x: [0, -80, 80, 0], y: [0, 80, -80, 0] }}
+        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
       />
-      {/* Small yellow blob */}
-      <motion.div
-        className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full bg-yellow-200/40 blur-[80px]"
-        animate={{
-          x: [0, 60, -60, 0],
-          y: [0, -60, 60, 0],
-        }}
-        transition={{
-          duration: 15,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
-      {/* Extra yellow blob */}
-      <motion.div
-        className="absolute top-1/2 left-1/2 w-[500px] h-[500px] rounded-full bg-yellow-200/50 blur-[90px]"
-        animate={{
-          x: [0, -70, 70, 0],
-          y: [0, 70, -70, 0],
-        }}
-        transition={{
-          duration: 17,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
+      {/* Additional blobs */}
     </div>
   )
 }
@@ -88,6 +49,11 @@ const NavLink = ({ href, children }: { href: string; children: React.ReactNode }
 export default function SharedLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen bg-background overflow-hidden relative text-white">
+      <Head>
+        <title>Slug AI</title>
+        <link rel="icon" href="/logo.png" type="image/png" />
+      </Head>
+
       <MovingYellowBlobs />
 
       {/* Navigation */}
@@ -95,13 +61,7 @@ export default function SharedLayout({ children }: { children: React.ReactNode }
         <div className="container mx-auto px-6 py-6">
           <div className="flex items-center justify-between">
             <Link href="/" className="hover:opacity-80 transition-opacity">
-              {/* Logo Image */}
-              <Image
-                src="/logo.png"
-                alt="SLUG AI Logo"
-                width={64} // Increase width
-                height={64} // Increase height
-              />
+              <Image src="/logo.png" alt="SLUG AI Logo" width={64} height={64} />
             </Link>
             <div className="flex items-center space-x-12">
               <NavLink href="/">HOME</NavLink>
