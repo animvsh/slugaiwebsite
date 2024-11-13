@@ -19,7 +19,6 @@ interface MemberProps {
 const MovingYellowBlobs = () => {
   return (
     <div className="absolute inset-0 -z-10 overflow-hidden">
-      {/* Main animated yellow blobs */}
       <motion.div
         className="absolute top-1/4 left-1/4 w-[400px] h-[400px] rounded-full bg-yellow-300/40 blur-[60px]"
         animate={{ x: [0, 150, -150, 0], y: [0, -150, 150, 0] }}
@@ -30,7 +29,6 @@ const MovingYellowBlobs = () => {
         animate={{ x: [0, -120, 120, 0], y: [0, 120, -120, 0] }}
         transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
       />
-      {/* Additional faster-moving blobs */}
       <motion.div
         className="absolute top-1/3 right-1/3 w-[250px] h-[250px] rounded-full bg-yellow-300/30 blur-[40px]"
         animate={{ x: [0, -100, 100, 0], y: [0, 100, -100, 0] }}
@@ -46,7 +44,6 @@ const MovingYellowBlobs = () => {
         animate={{ x: [0, -70, 70, 0], y: [0, 70, -70, 0] }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
       />
-      {/* Additional small, quick blobs for dynamic effect */}
       <motion.div
         className="absolute top-1/4 right-1/5 w-[100px] h-[100px] rounded-full bg-yellow-300/30 blur-[20px]"
         animate={{ x: [0, 80, -80, 0], y: [0, -80, 80, 0] }}
@@ -126,7 +123,7 @@ export default function AboutPage() {
       image: "/neel_billimoria.jpg",
       email: "nbillimo@ucsc.edu",
       linkedInUrl: "https://www.linkedin.com/in/neel-billimoria/",
-      description: "Expert in AI and data science, leveraging UCSC's research opportunities to advance AI consulting services."
+      description: "Expert in AI and data science, leveraging UCSC&apos;s research opportunities to advance AI consulting services."
     }
   ]
 
@@ -145,8 +142,6 @@ export default function AboutPage() {
       <div className="relative">
         <MovingYellowBlobs />
         <div className="container mx-auto px-6 py-12 max-w-5xl">
-
-          {/* Meet the Team Section with Image on the Left */}
           <section className="flex flex-col lg:flex-row items-center mb-16 gap-8 bg-white/10 p-8 rounded-xl backdrop-blur-sm shadow-lg">
             <div className="lg:w-1/2">
               <Image src="/crowd.png" alt="Team Photo" width={500} height={500} className="rounded-xl object-cover" />
@@ -154,12 +149,11 @@ export default function AboutPage() {
             <div className="lg:w-1/2 text-white text-left">
               <h1 className="text-4xl font-bold mb-4">Meet the Team</h1>
               <p className="text-lg leading-relaxed">
-                Born in the innovative spirit of UC Santa Cruz, Slug AI represents the next generation of AI consultants. Our passionate team is pushing boundaries in AI consulting, inspired by UCSC's unique blend of scientific rigor and creativity.
+                Born in the innovative spirit of UC Santa Cruz, Slug AI represents the next generation of AI consultants. Our passionate team is pushing boundaries in AI consulting, inspired by UCSC&apos;s unique blend of scientific rigor and creativity.
               </p>
             </div>
           </section>
 
-          {/* Founders Section */}
           <section className="mb-24">
             <h2 className="text-3xl font-bold mb-12 text-white text-center">Our Founders</h2>
             <div className="grid md:grid-cols-2 gap-12">
@@ -169,7 +163,6 @@ export default function AboutPage() {
             </div>
           </section>
 
-          {/* Team Grid */}
           <section className="mb-24">
             <h2 className="text-3xl font-bold mb-12 text-white text-center">The Team</h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-10">
@@ -179,7 +172,6 @@ export default function AboutPage() {
             </div>
           </section>
 
-          {/* Join Us Section */}
           <motion.section
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
