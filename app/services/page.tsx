@@ -111,34 +111,29 @@ export default function ServicesPage() {
         <div className="container mx-auto px-6 py-12 max-w-5xl text-white relative">
           
           {/* Hero Section */}
-          <section className="relative overflow-hidden bg-gray-800 bg-opacity-70 rounded-2xl mb-24 shadow-lg backdrop-blur-lg">
-            <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
-              <FadeInWhenVisible>
-                <div className="flex flex-col justify-center space-y-4">
-                  <h1 className="text-3xl font-bold tracking-tighter text-white sm:text-5xl xl:text-6xl/none">
-                    Everything AI<br />at Santa Cruz
-                  </h1>
-                  <p className="max-w-[600px] text-gray-300 md:text-xl">
-                    Slug AI is UC Santa Cruz&apos;s AI Consulting and Training organization, offering many services to its members.
-                  </p>
-                </div>
-              </FadeInWhenVisible>
-              <FadeInWhenVisible delay={0.2}>
-                <div className="flex items-center justify-center lg:justify-end">
-                  <div className="w-full max-w-[400px] h-[400px] relative">
-                    <svg viewBox="0 0 400 400" className="w-full h-full text-gray-600">
-                      <path
-                        fill="currentColor"
-                        d="M50 50h300v300H50z"
-                        transform="rotate(45 200 200)"
-                      />
-                    </svg>
-                    <div className="absolute inset-0 flex items-center justify-center text-white text-8xl font-bold">
-                      AI
-                    </div>
-                  </div>
-                </div>
-              </FadeInWhenVisible>
+          <section className="relative h-screen flex items-center justify-center bg-transparent mb-24">
+            <div className="relative max-w-5xl w-full mx-auto p-8 lg:p-12 bg-black bg-opacity-40 rounded-2xl shadow-lg backdrop-blur-md flex flex-col lg:flex-row items-center lg:items-stretch space-y-8 lg:space-y-0 lg:space-x-8">
+              
+              {/* Text Section */}
+              <div className="flex flex-col justify-center text-center lg:text-left">
+                <h1 className="text-4xl font-bold tracking-tighter text-white sm:text-5xl xl:text-6xl mb-4">
+                  Everything AI<br />at Santa Cruz
+                </h1>
+                <p className="text-gray-300 max-w-md lg:max-w-lg text-lg md:text-xl">
+                  Slug AI is UC Santa Cruz&apos;s AI Consulting and Training organization, offering many services to its members.
+                </p>
+              </div>
+              
+              {/* Image Section */}
+              <div className="relative w-full lg:w-1/2 h-80 lg:h-auto flex-shrink-0 overflow-hidden rounded-xl shadow-md">
+                <Image
+                  src="/long-logo.png"
+                  alt="Slug AI Logo"
+                  layout="fill"
+                  objectFit="contain"
+                  className="opacity-80 transition-transform duration-500 hover:scale-105"
+                />
+              </div>
             </div>
           </section>
 
@@ -253,15 +248,15 @@ export default function ServicesPage() {
             </FadeInWhenVisible>
           </section>
 
-          {/* Partnership Section */}
+          {/* Partnership Section with crowd.png as background */}
           <section className="mb-24">
             <div className="relative rounded-2xl overflow-hidden shadow-lg">
               <Image
-                src="/placeholder.svg"
-                alt="Partnership"
-                width={1200}
-                height={400}
-                className="w-full h-[400px] object-cover opacity-80"
+                src="/crowd.png"
+                alt="Partnership Background"
+                layout="fill"
+                objectFit="cover"
+                className="w-full h-[400px] object-cover opacity-70"
               />
               <div className="absolute inset-0 bg-black/70 p-12 flex flex-col justify-end backdrop-blur-md">
                 <FadeInWhenVisible>

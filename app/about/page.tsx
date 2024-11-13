@@ -23,28 +23,39 @@ const MovingYellowBlobs = () => {
       <motion.div
         className="absolute top-1/4 left-1/4 w-[400px] h-[400px] rounded-full bg-yellow-300/40 blur-[60px]"
         animate={{ x: [0, 150, -150, 0], y: [0, -150, 150, 0] }}
-        transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+        transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
         className="absolute top-3/4 right-1/4 w-[300px] h-[300px] rounded-full bg-yellow-300/40 blur-[50px]"
         animate={{ x: [0, -120, 120, 0], y: [0, 120, -120, 0] }}
-        transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
       />
-      {/* Additional slower-moving blobs */}
+      {/* Additional faster-moving blobs */}
       <motion.div
         className="absolute top-1/3 right-1/3 w-[250px] h-[250px] rounded-full bg-yellow-300/30 blur-[40px]"
         animate={{ x: [0, -100, 100, 0], y: [0, 100, -100, 0] }}
-        transition={{ duration: 30, repeat: Infinity, ease: "easeInOut" }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
         className="absolute bottom-1/4 left-1/3 w-[200px] h-[200px] rounded-full bg-yellow-300/20 blur-[30px]"
         animate={{ x: [0, 90, -90, 0], y: [0, -90, 90, 0] }}
-        transition={{ duration: 28, repeat: Infinity, ease: "easeInOut" }}
+        transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
         className="absolute top-1/2 left-1/2 w-[150px] h-[150px] rounded-full bg-yellow-300/25 blur-[20px]"
         animate={{ x: [0, -70, 70, 0], y: [0, 70, -70, 0] }}
-        transition={{ duration: 32, repeat: Infinity, ease: "easeInOut" }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+      />
+      {/* Additional small, quick blobs for dynamic effect */}
+      <motion.div
+        className="absolute top-1/4 right-1/5 w-[100px] h-[100px] rounded-full bg-yellow-300/30 blur-[20px]"
+        animate={{ x: [0, 80, -80, 0], y: [0, -80, 80, 0] }}
+        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div
+        className="absolute bottom-1/3 left-1/4 w-[120px] h-[120px] rounded-full bg-yellow-300/25 blur-[25px]"
+        animate={{ x: [0, -100, 100, 0], y: [0, 100, -100, 0] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
       />
     </div>
   )
@@ -59,8 +70,8 @@ const FounderProfile = ({
   linkedInUrl, 
   description 
 }: MemberProps) => (
-  <div className="flex items-center gap-8 w-full bg-white/10 p-6 rounded-xl shadow-lg backdrop-blur-md">
-    <div className="relative w-48 h-48 mb-4 overflow-hidden rounded-full">
+  <div className="flex items-center gap-8 w-full bg-white/10 p-6 rounded-xl shadow-lg backdrop-blur-md min-h-[300px]">
+    <div className="relative w-48 h-48 overflow-hidden rounded-full group">
       <Image src={image} alt={`${firstName} ${lastName}`} fill className="object-cover" />
       <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
         <a href={`mailto:${email}`} className="text-white hover:text-[#FFB800] transition-colors" aria-label={`Email ${firstName}`}>
@@ -136,18 +147,14 @@ export default function AboutPage() {
         <div className="container mx-auto px-6 py-12 max-w-5xl">
 
           {/* Meet the Team Section with Image on the Left */}
-          <section className="flex flex-col lg:flex-row items-center mb-16 gap-8">
-            <div className="lg:w-1/3">
-              <div className="p-6 rounded-xl bg-white/10 backdrop-blur-sm shadow-lg">
-                <Image src="/path-to-your-image.png" alt="Team Photo" width={500} height={500} className="rounded-xl object-cover" />
-              </div>
+          <section className="flex flex-col lg:flex-row items-center mb-16 gap-8 bg-white/10 p-8 rounded-xl backdrop-blur-sm shadow-lg">
+            <div className="lg:w-1/2">
+              <Image src="/crowd.png" alt="Team Photo" width={500} height={500} className="rounded-xl object-cover" />
             </div>
-            <div className="lg:w-2/3 text-white text-right">
+            <div className="lg:w-1/2 text-white text-left">
               <h1 className="text-4xl font-bold mb-4">Meet the Team</h1>
               <p className="text-lg leading-relaxed">
                 Born in the innovative spirit of UC Santa Cruz, Slug AI represents the next generation of AI consultants. Our passionate team is pushing boundaries in AI consulting, inspired by UCSC's unique blend of scientific rigor and creativity.
-                <br /><br />
-                From the redwood forests of Silicon Valley’s edge, we bring together expertise in machine learning, computer science, and innovation, united by our commitment to developing ethical, accessible AI technology.
               </p>
             </div>
           </section>
@@ -157,9 +164,7 @@ export default function AboutPage() {
             <h2 className="text-3xl font-bold mb-12 text-white text-center">Our Founders</h2>
             <div className="grid md:grid-cols-2 gap-12">
               {founders.map((founder, index) => (
-                <div key={index}>
-                  <FounderProfile {...founder} />
-                </div>
+                <FounderProfile key={index} {...founder} />
               ))}
             </div>
           </section>
