@@ -36,12 +36,7 @@ const MovingYellowBlobs = () => {
   )
 }
 
-interface FadeInWhenVisibleProps {
-  children: ReactNode
-  delay?: number
-}
-
-const FadeInWhenVisible = ({ children, delay = 0 }: FadeInWhenVisibleProps) => {
+const FadeInWhenVisible = ({ children, delay = 0 }: { children: ReactNode; delay?: number }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
