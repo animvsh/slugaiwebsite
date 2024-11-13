@@ -41,7 +41,7 @@ interface FadeInWhenVisibleProps {
   delay?: number
 }
 
-const FadeInWhenVisible: React.FC<FadeInWhenVisibleProps> = ({ children, delay = 0 }) => {
+const FadeInWhenVisible = ({ children, delay = 0 }: FadeInWhenVisibleProps) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
