@@ -38,10 +38,16 @@ const NavLink = ({ href, children, onClick }: NavLinkProps) => {
   return (
     <Link 
       href={href} 
-      className={`text-lg font-semibold ${isActive ? 'text-yellow-400' : 'text-white'} hover:text-yellow-400 transition-colors`}
+      className={`text-sm relative group ${isActive ? 'font-bold' : 'font-medium'} text-white`}
       onClick={onClick}
     >
       {children}
+      <motion.span
+        className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#FFB800] group-hover:w-full"
+        animate={{ width: isActive ? '100%' : '0%' }}
+        whileHover={{ width: '100%' }}
+        transition={{ duration: 0.3 }}
+      />
     </Link>
   )
 }
