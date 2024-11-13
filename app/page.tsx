@@ -1,5 +1,6 @@
 'use client'
 
+import { ReactNode } from "react"
 import { motion } from 'framer-motion'
 import { Button } from "@/components/ui/button"
 import SharedLayout from '@/components/shared-layout'
@@ -35,7 +36,12 @@ const MovingYellowBlobs = () => {
   )
 }
 
-const FadeInWhenVisible = ({ children, delay = 0 }) => {
+interface FadeInWhenVisibleProps {
+  children: ReactNode
+  delay?: number
+}
+
+const FadeInWhenVisible: React.FC<FadeInWhenVisibleProps> = ({ children, delay = 0 }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
