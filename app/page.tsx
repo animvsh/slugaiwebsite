@@ -55,6 +55,29 @@ const FadeInWhenVisible: React.FC<FadeInWhenVisibleProps> = ({ children, delay =
 }
 
 export default function LandingPage() {
+  const sections = [
+    {
+      number: "1",
+      title: "AI Training Program",
+      description: "Slug builds on experience scaling, deploying, and working with cutting-edge tech while our AI Training Program is equal to real-world career experience."
+    },
+    {
+      number: "2",
+      title: "Professional Networking",
+      description: "Join Slug AI's vibrant community to connect with industry professionals, exchange ideas and experiences, and build meaningful relationships."
+    },
+    {
+      number: "3",
+      title: "Industry Opportunity",
+      description: "Attend Slug AI hosted events, speaker sessions, and meetups with industry representatives, keeping you at the forefront of AI trends."
+    },
+    {
+      number: "4",
+      title: "AI Projects and Consulting",
+      description: "Participate in real-world projects and consult for clients under Slug AI, building your portfolio while contributing to innovative AI solutions."
+    }
+  ]
+
   return (
     <SharedLayout>
       {/* Moving Blobs Background */}
@@ -102,28 +125,7 @@ export default function LandingPage() {
             <h2 className="text-3xl font-bold text-center text-white drop-shadow-md">Who Are We?</h2>
           </FadeInWhenVisible>
           <div className="space-y-6">
-            {[
-              {
-                number: "1",
-                title: "AI Training Program",
-                description: "Slug builds on experience scaling, deploying, and working with cutting-edge tech while our AI Training Program is equal to real-world career experience."
-              },
-              {
-                number: "2",
-                title: "Professional Networking",
-                description: "Join Slug AI's vibrant community to connect with industry professionals, exchange ideas and experiences, and build meaningful relationships."
-              },
-              {
-                number: "3",
-                title: "Industry Opportunity",
-                description: "Attend Slug AI hosted events, speaker sessions, and meetups with industry representatives, keeping you at the forefront of AI trends."
-              },
-              {
-                number: "4",
-                title: "AI Projects and Consulting",
-                description: "Participate in real-world projects and consult for clients under Slug AI, building your portfolio while contributing to innovative AI solutions."
-              }
-            ].map((item, index) => (
+            {sections.map((item, index) => (
               <FadeInWhenVisible key={index} delay={index * 0.1}>
                 <div className="flex items-start space-x-4">
                   <span className="flex items-center justify-center w-8 h-8 rounded-full bg-[#FFB800] text-white font-bold flex-shrink-0">
